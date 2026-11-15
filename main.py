@@ -18,7 +18,11 @@ def home():
 
 @app.get("/hello/{name}")
 def say_hello(name: str):
-    return {"message": f"Hello, {name}!"}
+    return {
+    "message": f"Welcome, {name}!",
+    "name": name,
+    "status": "success"
+}
 
 @app.get("/items/{item_id}")
 def get_item(item_id: int):
