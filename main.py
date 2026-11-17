@@ -28,9 +28,21 @@ def say_hello(name: str):
 def get_item(item_id: int):
     return {"item_id": item_id, "name": "Sample Item"}
 
+
 @app.post("/items")
 def create_item(item: Item):
+
+    if item.price <= 0:
+        return {
+            "message": "Price must be greater than zero",
+            "status": "error"
+        }
+
     return {
-        "message": "Item created",
-        "item": item
+        "message": "Item created successfully",
+        "item": {
+            "name": item.name,
+            "price": item.price
+        },
+        "status": "success"
     }
